@@ -10,7 +10,7 @@ const ProfilePage = () => {
   return (
     <div className="flex h-screen">
     <div className="hidden md:block w-64 bg-gradient-to-r from-purple-950 to-blue-700 text-white">
-      <Sidebar />
+ 
     </div>
     <div className="flex-grow w-full">
       <ProfileHero />

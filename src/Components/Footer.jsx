@@ -7,8 +7,8 @@ import { CgProfile } from "react-icons/cg";
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-r from-purple-950 to-blue-700 m-3 p-3 py-8">
-    <div className='md:hidden container mx-auto px-4 '>
+    <footer className="md:hidden bg-gradient-to-r from-purple-950 to-blue-700 m-3 p-3 py-8">
+    <div className=' container mx-auto px-4 '>
       <div className='flex flex-row gap-10 items-center justify-center'>
       <IoHome color='white' size={30}/>
       <MdExplore color='white' size={30} />

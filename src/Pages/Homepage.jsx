@@ -1,16 +1,15 @@
 import React from 'react'
 import Impact from '../Components/Impact'
 import Feeds from '../Components/Feeds'
+import Sidebar from '../Components/Sidebar'
 
 const Homepage = () => {
   return (
-    <div>
-     
-     
-      <div className='flex-grow'>
+  
+    <div className='flex-grow'>
        <Impact />
        <Feeds />
-        </div> 
+
     </div>
   )
 }

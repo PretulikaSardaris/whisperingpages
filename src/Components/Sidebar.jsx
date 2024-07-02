@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
   return (
-    <div className='fixed top-15 left-0 h-screen w-28 md:w-64 bg-zinc-900 text-gray-300'>
+    <div className='hidden md:block fixed top-15 left-0 h-screen w-28 md:w-64 bg-zinc-900 text-gray-300'>
       <div className='p-4 m-5'>
         <ul className='space-y-4'>
           <li className='flex items-center space-x-2 cursor-pointer group'>
