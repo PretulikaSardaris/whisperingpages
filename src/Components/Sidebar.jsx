@@ -27,10 +27,7 @@ const Sidebar = () => {
             <IoIosNotifications color='gray' size={30} />
             <span className='hidden md:block group-hover:block'>Notification</span>
           </li>
-          <li className='flex items-center space-x-2 cursor-pointer group'>
-            <TiMessages color='gray' size={30} />
-            <span className='hidden md:block group-hover:block'>Message</span>
-          </li>
+         
           <li className='flex items-center space-x-2 cursor-pointer group'>
             <CiBookmark color='gray' size={30} />
             <span className='hidden md:block group-hover:block'>Bookmark</span>

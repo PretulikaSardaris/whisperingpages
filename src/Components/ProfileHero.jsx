@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { RiUserFollowFill } from "react-icons/ri";
 import { MdMessage } from "react-icons/md";
 
-const ProfileHero = () => {
+
+export default function ProfileHero  ({profileData}) {
+ 
   return (
     <div className='container m-5 p-5  md:m-10 md:p-10 w-full '>
         <div className='flex flex-row '>
@@ -30,17 +32,18 @@ const ProfileHero = () => {
         </div>
         </div>
 <div>Description
-  <ul>
-    <li>I am</li>
-  <li>A vivid reader</li>
-  <li>Fav Author</li>
-  <li>book recommendation</li>
-  <li>currently reading</li></ul>
+<ul className='list-disc pl-5'>
+          <li>{profileData.bio || "No bio provided"}</li>
+          <li>{profileData.favAuthor || "No favorite author provided"}</li>
+          <li>{profileData.bookRecommendation || "No book recommendation provided"}</li>
+          <li>{profileData.currentlyReading || "Not currently reading anything"}</li>
+        </ul>
 </div>
+<div><button className='bg-gradient-to-r from-purple-900 to-blue-500 w-1/2 h-8  text-white rounded-lg m-1 p-1 flex items-center justify-center'>Edit profile</button></div>
       
 
     </div>
   )
 }
 
-export default ProfileHero
+

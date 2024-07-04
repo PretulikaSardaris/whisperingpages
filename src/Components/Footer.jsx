@@ -1,23 +1,36 @@
 import React from 'react'
-import { IoHome } from "react-icons/io5";
-import { MdExplore } from "react-icons/md";
-import { BsFillSignpostSplitFill } from "react-icons/bs";
-import { MdOutlineLibraryAdd } from "react-icons/md";
+import { BiHomeCircle } from "react-icons/bi";
+import { HiOutlineSearchCircle } from "react-icons/hi";
+import { IoMdAddCircleOutline } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
+import { IoMdLogIn } from "react-icons/io";
+import { Link } from 'react-router-dom';
+import { FaRegBookmark } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="md:hidden bg-gradient-to-r from-purple-950 to-blue-700 m-3 p-3 py-8">
-    <div className=' container mx-auto px-4 '>
-      <div className='flex flex-row gap-10 items-center justify-center'>
-      <IoHome color='white' size={30}/>
-      <MdExplore color='white' size={30} />
-      <BsFillSignpostSplitFill color='white' size={30}/>
-      <MdOutlineLibraryAdd color='white' size={30}/>
-      <CgProfile color='white' size={30}/>
-      
+    <footer className="md:hidden bg-gradient-to-r from-purple-950 via-black to-purple-900  py-4">
+      <div className=' container'>
+        <div className='flex flex-row gap-10 items-center justify-center'>
+          <Link to='/'> 
+          <BiHomeCircle className='hover:shadow-glow' color='white' size={30} />
+          </Link>
+
+          <HiOutlineSearchCircle className='hover:shadow-glow cursor-pointer' color='white' size={30} />
+
+          <IoMdAddCircleOutline className='hover:shadow-glow cursor-pointer' color='white' size={30} />
+         <Link to='/profile'>
+          <CgProfile className='hover:shadow-glow' color='white' size={30} />
+          </Link>
+          <Link to='/bookmark' className='hover:shadow-glow cursor-pointer '>
+            <FaRegBookmark  color='white' size={25} />
+            
+          </Link>
+          <Link to='/login' > <IoMdLogIn className='hover:shadow-glow' color='white' size={30} /></Link>
+
+
+        </div>
       </div>
-    </div>
     </footer>
   )
 }
