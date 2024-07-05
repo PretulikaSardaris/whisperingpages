@@ -15,14 +15,16 @@ const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
   const[user, setUser] = useState(null);
-  const[ posts,addPosts] = useState([]);
-  const[ bookmarks,addBookmark] = useState([]);
+  const[ posts,setPosts] = useState([]);
+  const[ bookmarks,setBookmarks] = useState([]);
   const[ followers,setFollowers] = useState([]);
   const[ following,setFollowing] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setLoading(false)
     });
 
     return () => unsubscribe();
@@ -47,12 +49,26 @@ const AppProvider = ({ children }) => {
 
 
 
-   return (
-    <AppContext.Provider 
-    value={{ login , logout , addPosts,addBookmark, }}>
-        {children}
+  const value = {
+    user,
+    login,
+    logout,
+    posts,
+    setPosts,
+    bookmarks,
+    setBookmarks,
+    followers,
+    setFollowers,
+    following,
+    setFollowing,
+  };
+
+  return (
+    <AppContext.Provider value={value}>
+      {!loading && children}
     </AppContext.Provider>
-   )
-}
+  );
+};
+
 
 export{ AppContext , AppProvider}
