@@ -1,3 +1,28 @@
+/* Add these styles in your global CSS or App.css */
+html, body, #root {
+  height: 100%;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
+
+/* Define the color palette */
+:root {
+  --primary-bg-start: #522377;
+  --primary-bg-mid: #36195B;
+  --primary-bg-end: #080B38;
+  --secondary-bg: #133155;
+  --accent-color: #254D70;
+  --text-color: #E2E8F0;
+}
+
+
 #root {
   max-width: 1280px;
   margin: 0 auto;

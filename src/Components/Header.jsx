@@ -80,10 +80,10 @@ useEffect(() => {
     
 
   return (
-    <div className='w-full h-28 bg-gradient-to-r from-purple-900 via-black to-purple-900 mt-1 p-5 rounded-2xl text-gray-100 flex flex-col justify-center items-center'>
-  <p className='w-full text-center font-semibold text-md md:text-2xl lg:text-3xl font-mono italic'>{currentQuote.quote}</p>
-  <p className='text-gray-400'>– {currentQuote.author}</p>
-</div>
+    <div className='w-full bg-gradient-to-r from-purple-900 via-green-950 to-black  p-5 rounded-2xl text-gray-100 flex flex-col justify-center items-center fixed'>
+      <p className='w-full text-center font-semibold text-md md:text-2xl lg:text-3xl font-mono italic'>{currentQuote.quote}</p>
+      <p className='text-gray-400'>– {currentQuote.author}</p>
+    </div>
 
   );
 };

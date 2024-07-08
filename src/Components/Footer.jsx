@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { BiHomeCircle } from "react-icons/bi";
 import { HiOutlineSearchCircle } from "react-icons/hi";
 import { IoMdAddCircleOutline } from "react-icons/io";
@@ -7,14 +7,17 @@ import { IoMdLogIn } from "react-icons/io";
 import { Link } from 'react-router-dom';
 import { FaRegBookmark } from "react-icons/fa";
 import { FaSignOutAlt } from "react-icons/fa";
-import { signOut as firebaseSignOut } from 'firebase/auth';
+import { signOut as firebaseSignOut, onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../Context/firebase';
+import { AppContext } from '../Context/AppContext';
 
 const Footer = () => {
 
+  const {user, logout} = useContext(AppContext)
+
   const handleSignOut = () => {
-    firebaseSignOut(auth).then(() => {
-      // Sign-out successful.
+    logout().then(() => {
+    
       console.log('Signed out successfully');
     }).catch((error) => {
       console.error('Error signing out: ', error);
@@ -23,7 +26,7 @@ const Footer = () => {
 
   
   return (
-    <footer className="md:hidden bg-gradient-to-r from-purple-950 via-black to-purple-900  py-4">
+    <footer className="md:hidden bg-gradient-to-r from-purple-900 via-green-950 to-black py-4">
       <div className=' container'>
         <div className='flex flex-row gap-10 items-center justify-center'>
           <Link to='/'> 
@@ -37,12 +40,14 @@ const Footer = () => {
           <CgProfile className='hover:shadow-glow' color='white' size={30} />
           </Link>
           <Link to='/bookmark' className='hover:shadow-glow cursor-pointer '>
-            <FaRegBookmark  color='white' size={25} />
+            <FaRegBookmark  color='white' size={25} /></Link>
             
-          </Link>
-          <Link to='/login' > <IoMdLogIn className='hover:shadow-glow' color='white' size={30} /></Link>
+{user ? (
+ <FaSignOutAlt size={30} className='hover:shadow-glow' color='white' onClick={() => handleSignOut()}/>
+) : (
 
-          <FaSignOutAlt size={30} className='hover:shadow-glow' color='white' onClick={() => handleSignOut()}/>
+  <Link to='/login' > <IoMdLogIn className='hover:shadow-glow' color='white' size={30} /></Link>
+)}
 
 
         </div>

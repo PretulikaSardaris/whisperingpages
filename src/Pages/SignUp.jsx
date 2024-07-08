@@ -163,7 +163,7 @@ const SignUp = () => {
           </div>
           <div className="flex flex-col items-center justify-between gap-10">
             <button
-              className=" w-full bg-purple-700 rounded-lg  hover:bg-purple-800 text-white font-bold py-2 px-4  focus:outline-none focus:shadow-outline transition duration-200"
+              className=" w-full bg-gradient-to-r from-purple-900 via-green-950 to-black rounded-lg  hover:bg-purple-800 text-white font-bold py-2 px-4  focus:outline-none focus:shadow-outline transition duration-200"
               type="submit"
               disabled={register}
             >

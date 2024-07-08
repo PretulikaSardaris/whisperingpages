@@ -6,7 +6,7 @@ import Sidebar from '../Components/Sidebar'
 const Homepage = () => {
   return (
   
-    <div className='flex-grow'>
+    <div className='flex-grow top-40'>
        <Impact />
        <Feeds />
 

@@ -22,28 +22,37 @@ function App() {
 
   return (
     <div>
-      <div className="flex flex-col h-[100vh] bg-gradient-to-r from-purple-900 via-black to-purple-900">
-        <Header />
-        <div className="flex-grow flex">
-          <Sidebar className="hidden md:block md:w-1/4 lg:w-1/5" />
-          <div className="w-full md:w-1/2 lg:w-3/5 bg-white p-4">
-            <Routes>
-              <Route path="/" element={<Homepage />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/signup" element={<SignUp />} />
-              <Route element={<PrivateRoute />} />
-              <Route path="/profile" element={<ProfilePage />} />
-              <Route path="/bookmark" element={<Bookmark />} />
-            </Routes>
-          </div>
-          <div className="hidden md:block md:w-1/4 lg:w-1/5 bg-gray-200">
-            <Suggestions />
-          </div>
+    <div className="flex flex-col h-[100vh] ">
+      <Header className="fixed flex-shrink-0 h-16"/>
+      <div className="flex-grow flex overflow-hidden">
+        {/* Left Sidebar */}
+        <div className="hidden md:block md:w-1/4 lg:w-1/5 overflow-hidden bg-gradient-to-r from-purple-900 via-black to-purple-900 h-full flex-shrink-0">
+          <Sidebar />
         </div>
-        <Footer />
+        
+        {/* Middle Section */}
+        <div className="flex-grow h-full md:w-1/2 lg:w-3/5 bg-white p-4 overflow-auto">
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route element={<PrivateRoute />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/bookmark" element={<Bookmark />} />
+          </Routes>
+        </div>
+        
+        {/* Right Sidebar */}
+        <div className="hidden md:block md:w-1/4 lg:w-1/5 bg-gray-200 overflow-auto h-full flex-shrink-0">
+          <Suggestions />
+        </div>
       </div>
-      <ToastContainer />
+      <Footer />
     </div>
+    <ToastContainer />
+  </div>
+  
+  
   );
 }
 
