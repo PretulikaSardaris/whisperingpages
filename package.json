@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "firebase": "^10.12.2",
+    "fit-text": "^2.0.1",
     "framer-motion": "^11.2.11",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

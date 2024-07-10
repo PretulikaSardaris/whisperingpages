@@ -15,7 +15,7 @@ const ProfilePage = () => {
   const user = auth.currentUser;
 
   useEffect(() => {
-     const fetchProfileData = async() => {
+     const fetchProfileData = async() => { 
 if(user){
   const docRef = doc(db , 'users' , user.uid);
   const docSnap = await getDoc(docRef);
@@ -41,9 +41,7 @@ if(user){
 
   return (
     <div className="flex h-screen">
-    <div className="hidden md:block w-64 bg-gradient-to-r from-purple-950 to-blue-700 text-white">
- 
-    </div>
+  
     <div className="flex-grow w-full">
       <ProfileHero profileData={profileData} />
       <Highlights />

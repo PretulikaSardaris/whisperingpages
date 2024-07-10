@@ -22,32 +22,33 @@ function App() {
 
   return (
     <div>
-    <div className="flex flex-col h-[100vh] ">
-      <Header className="fixed flex-shrink-0 h-16"/>
-      <div className="flex-grow flex overflow-hidden">
-        {/* Left Sidebar */}
-        <div className="hidden md:block md:w-1/4 lg:w-1/5 overflow-hidden bg-gradient-to-r from-purple-900 via-black to-purple-900 h-full flex-shrink-0">
-          <Sidebar />
-        </div>
-        
-        {/* Middle Section */}
-        <div className="flex-grow h-full md:w-1/2 lg:w-3/5 bg-white p-4 overflow-auto">
+      <div className="flex h-screen">
+      {/* Left Sidebar */}
+      <div className="hidden md:flex md:w-1/6 bg-[#131826]">
+        <Sidebar />
+      </div>
+
+      {/* Middle Section */}
+      <div className="flex flex-col w-full md:w-2/3 bg-white">
+        <Header className="fixed w-full h-16 z-10 bg-gray-800 text-white flex items-center justify-between p-4 shadow-md" />
+        <div className="flex-grow overflow-auto mt-16 p-4">
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignUp />} />
-            <Route element={<PrivateRoute />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/bookmark" element={<Bookmark />} />
+            <Route element={<PrivateRoute />}>
+              <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/bookmark" element={<Bookmark />} />
+            </Route>
           </Routes>
         </div>
-        
-        {/* Right Sidebar */}
-        <div className="hidden md:block md:w-1/4 lg:w-1/5 bg-gray-200 overflow-auto h-full flex-shrink-0">
-          <Suggestions />
-        </div>
+        <Footer className="block md:hidden bg-gray-800 text-white p-4 text-center" />
       </div>
-      <Footer />
+
+      {/* Right Suggestions Section */}
+      <div className="hidden md:flex md:w-1/6 bg-gray-200 mt-16 p-4 overflow-auto">
+        <Suggestions />
+      </div>
     </div>
     <ToastContainer />
   </div>

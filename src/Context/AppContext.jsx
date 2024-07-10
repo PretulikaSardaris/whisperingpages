@@ -30,6 +30,32 @@ const AppProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try{
+      const postCollection = collection(db, 'posts');
+      const postSnapshot = await getDocs(postCollection);
+      const postList = postSnapshot.docs.map(doc => ({
+        id:doc.id, ...doc.data()
+      }));
+      setPosts(postList);
+      }
+      catch(error){
+console.error('Error fetching posts : ' , error)
+      }
+    }
+    fetchPosts()
+  } , [])
+
+  const addPost = async (post) => {
+    try {
+      const postCollection = collection(db, 'posts');
+      const docRef = await addDoc(postCollection, post);
+      setPosts([...posts, { id: docRef.id, ...post }]);
+    } catch (error) {
+      console.error("Error adding post:", error);
+    }
+  };
   const login = async (email, password) => {
 
     try{
@@ -55,6 +81,7 @@ const AppProvider = ({ children }) => {
     logout,
     posts,
     setPosts,
+    addPost , 
     bookmarks,
     setBookmarks,
     followers,

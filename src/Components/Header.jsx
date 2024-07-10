@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-
+import React, { useEffect, useRef, useState } from 'react';
+import fitText from 'fit-text';
 
 const Header = () => {
 
@@ -68,21 +68,39 @@ const Header = () => {
 ];
 
 const [currentQuote, setCurrentQuote] = useState(quotes[0]);
+const quoteRef = useRef(null);
 
 useEffect(() => {
   const intervalId = setInterval(() => {
     const randomIndex = Math.floor(Math.random() * quotes.length);
     setCurrentQuote(quotes[randomIndex]);
-  }, 8000);
+  }, 5000);
 
   return () => clearInterval(intervalId);
 }, []);
+
+useEffect(()=> {
+    const resizeText = () => {
+        const container = quoteRef.current;
+        let fontSize = 24; // Start with a large font size
+        container.style.fontSize = `${fontSize}px`;
+  
+        while (container.scrollHeight > container.clientHeight && fontSize > 10) {
+          fontSize -= 1;
+          container.style.fontSize = `${fontSize}px`;
+        }
+      };
+  
+      if (quoteRef.current) {
+        resizeText();
+      }
+    }, [currentQuote]);
     
 
   return (
-    <div className='w-full bg-gradient-to-r from-purple-900 via-green-950 to-black  p-5 rounded-2xl text-gray-100 flex flex-col justify-center items-center fixed'>
-      <p className='w-full text-center font-semibold text-md md:text-2xl lg:text-3xl font-mono italic'>{currentQuote.quote}</p>
-      <p className='text-gray-400'>– {currentQuote.author}</p>
+    <div className='w-full bg-[#0B0B1D] p-2  text-gray-300 flex flex-col justify-center items-center fixed'>
+      <p className='w-full m-2 font-semibold text-md md:text-xl lg:text-2xl font-mono italic'>{currentQuote.quote}</p>
+      <p className='text-gray-500'>– {currentQuote.author}</p>
     </div>
 
   );

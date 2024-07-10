@@ -11,7 +11,7 @@ export default {
         secondary: '#14171A',
       },
       fontFamily: {
-        sans: ['Helvetica', 'Arial', 'sans-serif'],
+        'playwrite': ['"Playwrite HR"', 'sans-serif'],
       },
       boxShadow: {
         glow: '0 4px 30px rgba(255, 255, 255, 0.4)',

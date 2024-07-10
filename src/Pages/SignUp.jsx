@@ -24,7 +24,7 @@ const SignUp = () => {
             })
         }
     }
-
+ 
 
   const { login, register } = useContext(AppContext);
 
@@ -76,7 +76,14 @@ const SignUp = () => {
 
     if (user) {
       try {
+        console.log('Profile Data:', profileData); // Logging profile data
+
+        if (!profileData.username || !profileData.avatarUrl) {
+          throw new Error('Invalid profile data');
+        }
         await setDoc(doc(db, 'users', user.uid), {
+          username: profileData.username,
+          avatar: profileData.avatarUrl,
           bio: profileData.bio,
           favAuthor: profileData.favAuthor,
           bookRecommendation: profileData.bookRecommendation,
@@ -87,7 +94,6 @@ const SignUp = () => {
         toast.success('Profile setup complete. Welcome!');
         setIsProfileSetupOpen(false);
         navigate('/');
-
       } catch (err) {
         console.log(err);
         toast.error(err.message);
@@ -132,7 +138,7 @@ const SignUp = () => {
             <input
               type="text"
               name="username"
-              autocomplete="username"
+              autoComplete="username"
               className="shadow-glow border rounded w-full py-3 px-4 text-white leading-tight  focus:shadow-outline focus:border-purple-500 bg-white bg-opacity-10"
               placeholder="Choose unique Username"
             />
@@ -144,7 +150,7 @@ const SignUp = () => {
             <input
               type="email"
               name="email"
-              autocomplete="email"
+              autoComplete="email"
               className="shadow-glow border rounded w-full py-3 px-4 text-white leading-tight  focus:shadow-outline focus:border-purple-500 bg-white bg-opacity-10"
               placeholder="Enter your email"
             />
@@ -156,7 +162,7 @@ const SignUp = () => {
             <input
               type="password"
               name="password"
-              autocomplete="password"
+              autoComplete="password"
               className="shadow-glow border rounded w-full py-3 px-4 text-white leading-tight  focus:shadow-outline focus:border-purple-500 bg-white bg-opacity-10"
               placeholder="Enter your password"
             />
