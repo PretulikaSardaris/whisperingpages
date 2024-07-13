@@ -34,21 +34,23 @@ export const PostsProvider = ({ children }) => {
   }, []);
 
   const addPost = async (post) => {
+    console.log(post)
     try {
       const postCollection = collection(db, 'posts');
       const newPost = {
         ...post,
         username: user.displayName || user.email, // Include username
         userId: user.uid, // Save user ID for reference
-        createdAt :new Date().toISOString
+        createdAt: new Date().toISOString(), // Set createdAt to current timestamp
       };
       const docRef = await addDoc(postCollection, newPost);
-      setPosts(prevPosts => [ { id: docRef.id, ...newPost }, ...prevPosts ]);
+      setPosts([...posts, { id: docRef.id, ...newPost }]); // Use newPost instead of post
     } catch (error) {
       console.error("Error adding post:", error);
       toast.error('Failed to add post.');
     }
   };
+  
 
   const value = {
     posts,
