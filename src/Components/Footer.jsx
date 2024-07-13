@@ -9,11 +9,11 @@ import { FaRegBookmark } from "react-icons/fa";
 import { FaSignOutAlt } from "react-icons/fa";
 import { signOut as firebaseSignOut, onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../Context/firebase';
-import { AppContext } from '../Context/AppContext';
+import { useAuth } from '../Context/AuthContext';
 
 const Footer = () => {
 
-  const {user, logout} = useContext(AppContext)
+  const {user, logout} = useAuth();
 
   const handleSignOut = () => {
     logout().then(() => {
@@ -26,7 +26,7 @@ const Footer = () => {
 
   
   return (
-    <footer className="md:hidden bg-gradient-to-r from-purple-900 via-green-950 to-black py-4">
+    <footer className="md:hidden bg-gradient-to-r from-orange-900 via-black to-red-950 py-4">
       <div className=' container'>
         <div className='flex flex-row gap-10 items-center justify-center'>
           <Link to='/'> 

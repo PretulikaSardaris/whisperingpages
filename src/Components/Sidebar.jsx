@@ -10,12 +10,15 @@ import { FaSignsPost } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 import SidebarItem from './SidebarItem';
 
+
+
+
 const Sidebar = () => (
-  <div className='hidden md:block  fixed  left-0 h-screen md:w-64 bg-[#131826]'>
+  <div className='hidden md:block  fixed  left-0 h-screen md:w-64' style={{ backgroundImage: 'url(https://static.vecteezy.com/system/resources/previews/004/742/695/large_2x/old-paper-background-texture-in-brown-free-photo.jpg)' }}>
     <div className='p-1  m-1 text-white text text-center mt-10 font-playwrite text-xl'>
       Whisperin Pages
     </div>
-  <div className=' text-slate-400  font-bold '>
+  <div className=' text-white  font-semibold text-xl'>
     <ul className='space-y-4 p-4'>
       <SidebarItem to="/" icon={FaHome} label="Home" />
       <SidebarItem to="/notifications" icon={IoIosNotifications} label="Notification" />

@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import './index.css'
 import App from './App'
-import { AppProvider } from './Context/AppContext'
+
+import { AuthProvider } from './Context/AuthContext'
+import { UserProvider } from './Context/UserContext'
+import { PostsProvider } from './Context/PostContext'
 
 
 
@@ -11,10 +14,14 @@ import { AppProvider } from './Context/AppContext'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AppProvider>
-    <BrowserRouter>
-    <App />
-    </BrowserRouter>
-    </AppProvider>
+    <AuthProvider>
+      <UserProvider>
+        <PostsProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+        </PostsProvider>
+      </UserProvider>
+    </AuthProvider>
   </React.StrictMode>,
 )

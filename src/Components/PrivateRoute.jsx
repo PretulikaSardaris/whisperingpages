@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { AppContext } from '../Context/AppContext';
+import { useAuth } from '../Context/AuthContext';
 
 const PrivateRoute = () => {
-  const { user } = useContext(AppContext);
+  const { user } = useAuth;
   const location = useLocation();
 
   if (!user) {

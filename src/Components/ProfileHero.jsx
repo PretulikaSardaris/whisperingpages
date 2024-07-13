@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { RiUserFollowFill } from "react-icons/ri";
 import { MdMessage } from "react-icons/md";
+import { useUser } from '../Context/UserContext';
 
 
-export default function ProfileHero  ({profileData}) {
- 
+
+export default function ProfileHero  () {
+  const { profileData } = useUser();
+   
   return (
     <div className='container m-5 p-5  md:m-10 md:p-10 w-full '>
         <div className='flex flex-row '>
@@ -13,14 +16,14 @@ export default function ProfileHero  ({profileData}) {
             <p className='text-2xl md:text-3xl lg:text-4xl font-serif font-bold m-2 p-2'>{profileData.username || "No name provided"}</p>
             <div className='flex flex-col justify-around m-1 p-1 gap-2'>
                 <div className='flex flex-row'>
-                  <button className='bg-gradient-to-r from-purple-900 to-blue-500 w-full h-8  text-white rounded-lg m-1 p-1 flex items-center justify-center'> <span className='mr-2'>Follow</span>
+                  <button className='bg-gradient-to-r from-red-900 to-black w-full h-8  text-white rounded-lg m-1 p-1 flex items-center justify-center'> <span className='mr-2'>Follow</span>
 
                 <RiUserFollowFill  size={30} color='white' className='m-1 p-1' />
                 </button></div>
            
            
             <div className='flex flex-row'>
-              <button className='bg-gradient-to-r from-purple-900 to-blue-500 w-full h-8 text-white rounded-lg m-1 p-1 flex items-center justify-center'>
+              <button className='bg-gradient-to-r from-red-900 to-black w-full h-8 text-white rounded-lg m-1 p-1 flex items-center justify-center'>
                 <span className='mr-2'>Message</span>
                 <MdMessage size={20} color='white' />
               </button>
@@ -39,7 +42,7 @@ export default function ProfileHero  ({profileData}) {
           <li><span className='font-bold font-serif'>Currently Reading </span>: S{profileData.currentlyReading || "Not currently reading anything"}</li>
         </ul>
 </div>
-<div><button className='bg-gradient-to-r from-purple-900 to-blue-500 w-1/2 h-8  text-white rounded-lg m-1 p-1 flex items-center justify-center'>Edit profile</button></div>
+<div><button className='bg-gradient-to-r from-red-900 to-black w-1/2 h-8  text-white rounded-lg m-1 p-1 flex items-center justify-center'>Edit profile</button></div>
       
 
     </div>

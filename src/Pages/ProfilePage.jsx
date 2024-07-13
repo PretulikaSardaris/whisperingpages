@@ -1,54 +1,58 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useContext, useState } from 'react';
+import Sidebar from '../Components/Sidebar';
+import ProfileHero from '../Components/ProfileHero';
+import Highlights from '../Components/Highlights';
+import PostGrid from '../Components/PostGrid';
 
-import Sidebar from '../Components/Sidebar'
-
-import ProfileHero from '../Components/ProfileHero'
-import Highlights from '../Components/Highlights'
-import PostGrid from '../Components/PostGrid'
-import { auth, db } from '../Context/firebase'
-import { doc, getDoc } from 'firebase/firestore'
+import { auth, db } from '../Context/firebase';
+import { doc, getDoc, collection, getDocs } from 'firebase/firestore';
+import { usePosts } from '../Context/PostContext';
 
 const ProfilePage = () => {
+ 
+ const {user} = useAuth();
+ const {profileData} = useUser();
+ const { posts,
+  
+  addPost, }=usePosts()
 
-  const[profileData , setProfileData] = useState(null);
-  const[loading , setLoading] = useState(true);
-  const user = auth.currentUser;
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-     const fetchProfileData = async() => { 
-if(user){
-  const docRef = doc(db , 'users' , user.uid);
-  const docSnap = await getDoc(docRef);
-  if(docSnap.exists()){
-    setProfileData(docSnap.data());
+    const fetchPosts = async () => {
+      if (user) {
+        try {
+          const postCollection = collection(db, 'posts');
+          const postSnapshot = await getDocs(postCollection);
+          const postList = postSnapshot.docs
+            .map(doc => ({ id: doc.id, ...doc.data() }))
+            .filter(post => post.userId === user.uid); // Filter posts by the logged-in user
 
-  }else{
-    console.log('No such document!');
-  }
-  setLoading(false);
-}
-     }
-     fetchProfileData();
-  }, [user]);
+          setPosts(postList);
+        } catch (error) {
+          console.error('Error fetching posts:', error);
+        }
+      }
+      setLoading(false);
+    };
+
+    fetchPosts();
+  }, [user, setPosts]);
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  if (!profileData) {
-    return <div>No profile data found.</div>;
-  }
-
   return (
     <div className="flex h-screen">
-  
-    <div className="flex-grow w-full">
-      <ProfileHero profileData={profileData} />
-      <Highlights />
-      <PostGrid />
+      <Sidebar />
+      <div className="flex-grow w-full">
+        <ProfileHero profileData={profileData} />
+        <Highlights />
+        <PostGrid />
+      </div>
     </div>
-  </div>
-  )
-}
+  );
+};
 
-export default ProfilePage
+export default ProfilePage;

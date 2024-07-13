@@ -24,7 +24,7 @@ function App() {
     <div>
       <div className="flex h-screen">
       {/* Left Sidebar */}
-      <div className="hidden md:flex md:w-1/6 bg-[#131826]">
+      <div className="hidden md:flex md:w-1/6 ">
         <Sidebar />
       </div>
 

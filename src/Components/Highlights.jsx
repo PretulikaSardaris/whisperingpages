@@ -17,7 +17,7 @@ const Highlights = () => {
                 sm:w-20 sm:h-20
                 md:w-22 md:h-22
                 lg:w-24 lg:h-24
-                border border-spacing-1 rounded-full bg-gradient-to-r from-purple-700 to-blue-500 flex items-center justify-center'
+                border border-spacing-1 rounded-full bg-gradient-to-r from-red-700 to-black flex items-center justify-center'
               onClick={newDiv}
             >
               +
