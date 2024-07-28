@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaHome } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
-import { CiBookmark } from "react-icons/ci";
+import { IoBookmark } from "react-icons/io5";
 import { IoIosNotifications } from "react-icons/io";
 import { TiGroup } from "react-icons/ti";
 import { CgProfile } from "react-icons/cg";
@@ -13,16 +13,16 @@ import SidebarItem from './SidebarItem';
 
 
 
-const Sidebar = () => (
-  <div className='hidden md:block  fixed  left-0 h-screen md:w-64' style={{ backgroundImage: 'url(https://static.vecteezy.com/system/resources/previews/004/742/695/large_2x/old-paper-background-texture-in-brown-free-photo.jpg)' }}>
-    <div className='p-1  m-1 text-white text text-center mt-10 font-playwrite text-xl'>
+const Sidebar = ({ toggleNotifications}) => (
+  <div className='hidden md:block  fixed  left-0 h-screen md:w-64' >
+    <div className='p-1  m-1 text-black text text-center mt-10 font-playwrite text-xl'>
       Whisperin Pages
     </div>
-  <div className=' text-white  font-semibold text-xl'>
+  <div className=' text-black  font-semibold text-xl'>
     <ul className='space-y-4 p-4'>
       <SidebarItem to="/" icon={FaHome} label="Home" />
-      <SidebarItem to="/notifications" icon={IoIosNotifications} label="Notification" />
-      <SidebarItem to="/bookmark" icon={CiBookmark} label="Bookmark" />
+      <SidebarItem  onClick = {toggleNotifications} icon={IoIosNotifications} label="Notification" />
+      <SidebarItem to="/bookmark" icon={IoBookmark } label="Bookmark" />
       <SidebarItem to="/communities" icon={TiGroup} label="Communities" />
       <SidebarItem to="/profile" icon={CgProfile} label="Profile" />
       <SidebarItem to="/login" icon={IoMdLogIn} label="Login/Logout" />

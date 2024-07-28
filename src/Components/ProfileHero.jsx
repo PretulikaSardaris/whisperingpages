@@ -7,7 +7,20 @@ import { useUser } from '../Context/UserContext';
 
 export default function ProfileHero  () {
   const { profileData } = useUser();
+
+
    
+  const defaultProfileData = {
+    avatarUrl: '',
+    username: 'No name provided',
+    bio: 'No bio provided',
+    favAuthor: 'No favorite author provided',
+    bookRecommendation: 'No book recommendation provided',
+    currentlyReading: 'Not currently reading anything',
+  };
+
+  const userProfile = { ...defaultProfileData, ...profileData };
+  
   return (
     <div className='container m-5 p-5  md:m-10 md:p-10 w-full '>
         <div className='flex flex-row '>

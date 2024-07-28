@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
-import { AppContext } from '../Context/AppContext';
 import { useAuth } from '../Context/AuthContext';
 
 const PrivateRoute = () => {
-  const { user } = useAuth;
+  const { user } = useAuth(); // Correctly call the hook
   const location = useLocation();
 
   if (!user) {
@@ -14,4 +13,4 @@ const PrivateRoute = () => {
   return <Outlet />;
 };
 
-export default PrivateRoute
+export default PrivateRoute;

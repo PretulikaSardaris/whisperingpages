@@ -6,9 +6,12 @@ import AddPost from '../Components/AddPost'
 const Homepage = () => {
   return (
 
-    <div className='flex-grow top-40'>
+    <div className='flex-grow top-40 items-center'>
       <AddPost />
-      <Feeds />
+      <div >
+            <Feeds />
+          </div>
+      
 
     </div>
   )

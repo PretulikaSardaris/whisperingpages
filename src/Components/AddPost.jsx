@@ -2,6 +2,7 @@ import React, { useState, } from 'react';
 import { usePosts } from '../Context/PostContext';
 import { CiImageOn } from "react-icons/ci";
 import {  useUser } from '../Context/UserContext';
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const AddPost = () => {
   const [description, setDescription] = useState('');
@@ -11,15 +12,26 @@ const AddPost = () => {
 
   if (!profileData) {
     return <div>Loading or no profile data found...</div>;
-  }
+  } 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let imageUrl = '';
+
+    if (image) {
+      const storage = getStorage();
+      const imageRef = ref(storage, `images/${image.name}`);
+      await uploadBytes(imageRef, image);
+      imageUrl = await getDownloadURL(imageRef);
+    }
+
     const postData = {
       description,
-      image,
+      imageUrl,
       username: profileData.username,
       avatarUrl: profileData.avatarUrl,
+      userId: profileData.uid,
+      createdAt: new Date().toISOString(),
     };
     
     await addPost(postData);
@@ -28,14 +40,9 @@ const AddPost = () => {
   }
 
   return (
-    <div className='container rounded-lg p-10 m-5' style={{
-      background: 'url(https://img.freepik.com/premium-photo/grunge-background-with-old-paper-frame-text-image_900706-13887.jpg)',
-      backgroundRepeat: 'no-repeat',
-      position: 'relative',
-      boxShadow: '0 4px 15px rgba(0, 0, 0, 0.3)',
-    }}>
+    <div className='container rounded-lg p-10 m-5 bg-yellow-800 bg-opacity-40' >
       <div className='flex flex-row text-center mt-10 ml-20 gap-5'>
-        <img src={profileData.avatarUrl} className='w-12 h-12 lg:w-28 lg:h-28 border rounded-full' alt="" />
+        <img src={profileData.avatarUrl} className='w-12 h-12 lg:w-20 lg:h-20 border rounded-full' alt="" />
         <p className='font-playwrite font-bold text-xl md:text-2xl lg:text-3xl'>{profileData.username}</p>
       </div>
 

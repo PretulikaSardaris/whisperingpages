@@ -23,7 +23,7 @@ const books = [
 const BookItem = ({ book }) => (
   <div className="flex items-center mb-4 p-2 bg-red-950 bg-opacity-50 backdrop-filter rounded-lg shadow-glow ">
     <img src={book.cover} alt={book.title} className="w-16 h-24 object-cover rounded-md" />
-    <div className="ml-4 text-gray-300">
+    <div className="ml-4 text-black">
       <h3 className="text-lg font-semibold">{book.title}</h3>
       <p className="text-sm">{book.author}</p>
       <p className="text-sm mt-2">{book.description}</p>
@@ -36,15 +36,17 @@ const BookItem = ({ book }) => (
 
 const Suggestions = () => {
   return (
-    <div className="p-4 h-full overflow-auto top-80 mt-10 rounded-md" style={{ backgroundImage: 'url(https://i.pinimg.com/474x/c2/c1/df/c2c1df62dcba0f05827680c409fdbfad.jpg)' ,backgroundRepeat: 'no-repeat' }}>
-    <h2 className="text-xl font-semibold mb-4 mt-16 text-white font-playwrite">Book Recommendations</h2>
+    <div className="p-4 h-full  top-80 mt-4 rounded-md" 
+    // style={{ backgroundImage: 'url(https://i.pinimg.com/474x/c2/c1/df/c2c1df62dcba0f05827680c409fdbfad.jpg)' ,backgroundRepeat: 'no-repeat' }}
+    >
+    <h2 className="text-xl font-semibold mb-4 mt-8 text-black font-playwrite">Book Recommendations</h2>
     <div>
       {books.map(book => (
         <BookItem key={book.title} book={book} />
       ))}
     </div>
     <div className="mt-4">
-      <a href="#" className="text-blue-400 hover:underline">See more recommendations</a>
+      <a href="#" className="text-black  font-semibold hover:underline">See more recommendations</a>
     </div>
   </div>
   );

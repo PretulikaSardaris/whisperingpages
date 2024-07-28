@@ -10,8 +10,9 @@ import { FaSignOutAlt } from "react-icons/fa";
 import { signOut as firebaseSignOut, onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../Context/firebase';
 import { useAuth } from '../Context/AuthContext';
+import { MdOutlineNotificationsNone  } from "react-icons/md";
 
-const Footer = () => {
+const Footer = ({toggleNotifications}) => {
 
   const {user, logout} = useAuth();
 
@@ -35,19 +36,20 @@ const Footer = () => {
 
           <HiOutlineSearchCircle className='hover:shadow-glow cursor-pointer' color='white' size={30} />
 
+
+          <MdOutlineNotificationsNone  className='hover:shadow-glow cursor-pointer' color='white' size={30}  onClick = {toggleNotifications}/>
+
           <IoMdAddCircleOutline className='hover:shadow-glow cursor-pointer' color='white' size={30} />
          <Link to='/profile'>
           <CgProfile className='hover:shadow-glow' color='white' size={30} />
+
           </Link>
           <Link to='/bookmark' className='hover:shadow-glow cursor-pointer '>
             <FaRegBookmark  color='white' size={25} /></Link>
             
-{user ? (
- <FaSignOutAlt size={30} className='hover:shadow-glow' color='white' onClick={() => handleSignOut()}/>
-) : (
 
   <Link to='/login' > <IoMdLogIn className='hover:shadow-glow' color='white' size={30} /></Link>
-)}
+
 
 
         </div>

@@ -98,7 +98,7 @@ useEffect(()=> {
     
 
   return (
-    <div className='w-full   p-2  text-gray-900 flex flex-col justify-center items-center fixed font-playwrite' style={{ backgroundImage: 'url(https://s.tmimgcdn.com/scr/1200x750/331700/vintage-paper-a-huge-paper-texture-background_331705-original.jpg)' }}>
+    <div className='w-full   p-2  text-gray-900 flex flex-col justify-center items-center fixed font-playwrite' >
       <p className='w-full m-2 text-red-950 font-semibold text-md md:text-xl lg:text-2xl'>{currentQuote.quote}</p>
       <p className='text-orange-900'>– {currentQuote.author}</p>
     </div>
